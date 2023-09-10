@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/output.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">    <title>My contacts</title>
+</head>
+<body>
+    <nav id="navbar" class="fixed top-0 right-0 left-0 z-10 bg-violet-600 h-16">
+    </nav>
+    <button id="add-btn-container" class="fixed bottom-0 right-0 m-8 bg-sky-500 rounded-full w-12 h-12 flex justify-center items-center z-10 hover:scale-110 transition ease-in-out">
+        <svg id="add-btn" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-9 h-9 text-white">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+          </svg> 
+    </button>
+    <div id="main-container" class="mt-20 container">
+
+        
+
+            <div id="contacts-container" class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center">
+            </div>
+
+            <form id="form" class=" fixed bg-zinc-50 shadow-md h-3/4 w-5/6 mx-auto self-center rounded-md  flex-col hidden top-20 left-0 right-0 lg:h-3/5">
+                <svg id="close-form-btn" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 absolute top-0 right-0 m-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>      
+    
+                <div class="input-container mt-12 flex flex-col gap-2">
+                    <p class="pl-8">Name:</p>
+                    <input type="text" id="name-input" placeholder="Nicole Perez" autocomplete="off" class="rounded-md w-11/12 h-10 mx-auto bg-slate-200 pl-4 focus:outline-orange-500">
+                    <p id="info-text" class="info-text pl-8 text-gray-500 invisible">Please add just first and last name with Uppercase</p>
+                </div>
+    
+                <div class="input-container flex flex-col gap-2 mt-5">
+                    <p class="pl-8">Phone Number:</p>
+                    <input type="text" id="phone-input" placeholder="04143356524" autocomplete="off" class="rounded-md w-11/12 h-10 mx-auto bg-slate-200 pl-4 focus:outline-orange-500">
+                    <p id="info-text" class="info-text pl-8 text-gray-500 invisible">Please add a valid phone number</p>
+                </div>
+    
+                <button id="form-btn" class="flex justify-center items-center rounded-md w-11/12 h-10 mx-auto bg-sky-500 text-white font-bold mt-8 disabled:bg-sky-500/75" disabled >Create contact</button>
+    
+            </form>
+          
+    </div>
+    <script src="index.js"></script>
+    <script type="module" src="../components/nav.js"></script>
+</body>
+</html>
