@@ -9,7 +9,7 @@ form.addEventListener('submit', async e => {
     e.preventDefault();
     loader.innerHTML = `
     <?xml version="1.0" encoding="utf-8"?>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: rgb(255, 255, 255); display: block; shape-rendering: auto;" width="111px" height="111px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; display: block; shape-rendering: auto;" width="50px" height="50px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
     <g transform="translate(80,50)">
     <g transform="rotate(0)">
     <circle cx="0" cy="0" r="6" fill="#85a2b6" fill-opacity="1">
@@ -78,6 +78,7 @@ form.addEventListener('submit', async e => {
         await axios.post('/api/login', user);
         window.location.pathname = '/contacts/';
     } catch (error) {
+      loader.innerHTML = '';
      console.log(error);   
      errorText.innerHTML = error.response.data.error;
     }
