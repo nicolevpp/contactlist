@@ -248,24 +248,6 @@ contactsContainer.addEventListener('click', async e => {
 });
 
 
-
-    // optionMobileBtn.addEventListener('click', e => {
-
-    //     console.log('click');
-       
-    //     // if (optionMobileMenu.classList.contains('hidden')) {
-    //     //     optionMobileMenu.classList.remove('hidden');
-    //     // } else {
-    //     //     optionMobileMenu.classList.add('hidden');
-    //     // }
-    // });
-
-
-
-   
-    
-
-
 addBtn.addEventListener('click', e => {
     if (form.classList.contains('hidden')) {
         form.classList.remove('hidden');
@@ -289,7 +271,6 @@ addBtn.addEventListener('click', e => {
 			withCredentials: true
 		});
 
-       
 		
 		data.forEach(contact => {
 

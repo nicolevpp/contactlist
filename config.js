@@ -1,5 +1,5 @@
 const PAGE_URL = process.env.NODE_ENV === 'production'
-? 'http://localhost:3005'
+? 'https://contactly-fnpa.onrender.com/'
 : 'http://localhost:3005'
 
 const MONGO_URI = process.env.NODE_ENV === 'production'
