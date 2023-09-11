@@ -11,8 +11,9 @@ const closeFormBtn = document.querySelector('#close-form-btn');
 const noContacts = document.querySelector('#no-contacts');
 
 
+
 const NAME_REGEX = /^[A-Z][a-zA-ZÀ-ÿ\u00f1\u00d1]+\s[A-Z][a-zA-ZÀ-ÿ\u00f1\u00d1]+$/;
-const PHONE_REGEX =  /^[+0-9][0-9- ()_]{4,20}$/;
+const PHONE_REGEX =  /^[+0-9][0-9- ()_]{10,15}$/;
 
 let nameValidation = false; 
 let phoneValidation = false;
@@ -59,7 +60,6 @@ phoneInput.addEventListener('input', e => {
 
 form.addEventListener('submit', async e  => {
     e.preventDefault();
-
     form.classList.add('hidden');
 
     const newContact = {
@@ -67,8 +67,6 @@ form.addEventListener('submit', async e  => {
         phone: phoneInput.value,
     }
     const { data } = await axios.post('/api/contacts', newContact);
-
-
 
     const listItem = document.createElement('div');
 	listItem.id = data.id;
@@ -98,9 +96,6 @@ form.addEventListener('submit', async e  => {
     
 	// Append listItem
 	contactsContainer.append(listItem);
-
-
-
     addBtn.parentElement.classList.remove('hidden');
     nameInput.value = '';
     phoneInput.value = '';
@@ -109,16 +104,16 @@ form.addEventListener('submit', async e  => {
     nameValidation = false;
     phoneValidation = false;
     formBtn.disabled = true;
+
+    contactsExist();
 });
 
 contactsContainer.addEventListener('click', async e => {
-
 
     if (e.target.closest('#option-mobile-btn')) {
 
         const optionMobileBtn = e.target.closest('#option-mobile-btn');
         const optionMobileMenu = optionMobileBtn.parentElement.parentElement.children[1];
-
         const editBtn = optionMobileMenu.children[0];
         const deleteBtn = optionMobileMenu.children[1];
 
@@ -148,8 +143,6 @@ contactsContainer.addEventListener('click', async e => {
                     editInputName.setAttribute('readonly', 'true');
                     // Coloco el icono de editar
                     editBtn.innerHTML = "Edit";
-
-                
                     editInputPhone.classList.remove('outline-green-700', 'outline-2', 'outline');
                     editInputName.classList.remove('outline-green-700', 'outline-2', 'outline');
 
@@ -163,7 +156,6 @@ contactsContainer.addEventListener('click', async e => {
         let nameAddedValidation = true;
         let phoneAddedValidation = true;
 
-        
         const validateAddedInput = (input, regexValidation) => {
             if (nameAddedValidation && phoneAddedValidation) {
                 editBtn.classList.remove('hidden');
@@ -180,8 +172,6 @@ contactsContainer.addEventListener('click', async e => {
                 input.classList.add('outline-red-700', 'outline-2', 'outline')
             }};
 
-
-
         editInputName.addEventListener('input', e => {
             nameAddedValidation = NAME_REGEX.test(editInputName.value);
             validateAddedInput(editInputName, nameAddedValidation);
@@ -193,7 +183,6 @@ contactsContainer.addEventListener('click', async e => {
             validateAddedInput(editInputPhone, phoneAddedValidation);
             console.log(phoneAddedValidation);
         });
-        
         
                     // Nueva clase editando para indicar el estado del boton
                     editBtn.classList.add('editando');
@@ -212,16 +201,15 @@ contactsContainer.addEventListener('click', async e => {
 
             })
 
-            
-
             // Delete contact
 
             deleteBtn.addEventListener('click', async e => {
 
-                console.log('delete');
                 const li = e.target.closest('#delete-btn').parentElement.parentElement;               
 	        	await axios.delete(`/api/contacts/${li.id}`);
 	        	li.remove();
+
+                contactsExist();
             })
 
         } 
@@ -230,22 +218,7 @@ contactsContainer.addEventListener('click', async e => {
             optionMobileMenu.classList.remove('active');
             optionMobileMenu.classList.add('hidden');
         }
-
-        
-
-       
-           
-          
-
-        
          }
-
-		
-
-	
-
-
-		
 });
 
 
@@ -265,7 +238,6 @@ addBtn.addEventListener('click', e => {
     
 });
 
-
 (async () => {
 
 	try {
@@ -273,12 +245,7 @@ addBtn.addEventListener('click', e => {
 			withCredentials: true
 		});
 
-        // if (data.length === 0) {
-        //     contactsContainer.classList.remove('grid');
-        // } else {
-        //     contactsContainer.classList.add('grid')
-        //     noContacts.classList.add('hidden');
-        // }
+        contactsExist();
     
 		
 		data.forEach(contact => {
@@ -315,6 +282,28 @@ addBtn.addEventListener('click', e => {
 		window.location.pathname = '/login'
 	}
 })();
+
+async function contactsExist () {
+    try {
+        const { data } = await axios.get('/api/contacts')
+        console.log(data.length);
+
+        if (data.length === 0) {
+            contactsContainer.classList.remove('grid');
+            noContacts.classList.remove('hidden');
+        } else {
+            noContacts.classList.add('hidden');
+            contactsContainer.classList.add('grid');
+        }
+    } catch (error) {
+        console.log(error);
+    }
+
+};
+
+contactsExist();
+
+  
 
 
 
