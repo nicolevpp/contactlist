@@ -273,12 +273,12 @@ addBtn.addEventListener('click', e => {
 			withCredentials: true
 		});
 
-        if (data.length === 0) {
-            contactsContainer.classList.remove('grid');
-        } else {
-            contactsContainer.classList.add('grid')
-            noContacts.classList.add('hidden');
-        }
+        // if (data.length === 0) {
+        //     contactsContainer.classList.remove('grid');
+        // } else {
+        //     contactsContainer.classList.add('grid')
+        //     noContacts.classList.add('hidden');
+        // }
     
 		
 		data.forEach(contact => {
