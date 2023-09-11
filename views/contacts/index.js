@@ -80,8 +80,8 @@ form.addEventListener('submit', async e  => {
     </svg>
         
     <div id="contact-info" class="flex flex-col gap-1 ml-4 w-2/4">
-        <input type="text" id="name-added" class="font-bold bg-transparent w-full focus:outline-none" value="${data.contactname}" readonly>
-        <input type="text" id="phone-added" class="bg-transparent w-full focus:outline-none" value="${data.phone}" readonly>
+        <input type="text" id="name-added" class="font-bold bg-transparent w-full" value="${data.contactname}" readonly>
+        <input type="text" id="phone-added" class="bg-transparent w-full" value="${data.phone}" readonly>
     </div>
     <svg id="option-mobile-btn" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
@@ -286,8 +286,8 @@ addBtn.addEventListener('click', e => {
     </svg>
         
     <div id="contact-info" class="flex flex-col gap-1 ml-4 w-2/4">
-        <input type="text" id="name-added" class="font-bold bg-transparent w-full focus:outline-none" value="${contact.contactname}" readonly>
-        <input type="text" id="phone-added" class="bg-transparent w-full focus:outline-none" value="${contact.phone}" readonly>
+        <input type="text" id="name-added" class="font-bold bg-transparent w-full" value="${contact.contactname}" readonly>
+        <input type="text" id="phone-added" class="bg-transparent w-full" value="${contact.phone}" readonly>
     </div>
     <svg id="option-mobile-btn" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
