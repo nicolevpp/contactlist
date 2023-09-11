@@ -8,6 +8,7 @@ const editBtn = document.querySelector('#edit-btn');
 const deleteBtn = document.querySelector('#delete-btn');
 const addBtn = document.querySelector('#add-btn');
 const closeFormBtn = document.querySelector('#close-form-btn');
+const noContacts = document.querySelector('#no-contacts');
 
 
 const NAME_REGEX = /^[A-Z][a-zA-ZÀ-ÿ\u00f1\u00d1]+\s[A-Z][a-zA-ZÀ-ÿ\u00f1\u00d1]+$/;
@@ -79,7 +80,7 @@ form.addEventListener('submit', async e  => {
         <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
     </svg>
         
-    <div id="contact-info" class="flex flex-col gap-1 ml-4 w-2/4">
+    <div id="contact-info" class="flex flex-col gap-2 ml-4 w-2/4">
         <input type="text" id="name-added" class="font-bold bg-transparent w-full" value="${data.contactname}" readonly>
         <input type="text" id="phone-added" class="bg-transparent w-full" value="${data.phone}" readonly>
     </div>
@@ -264,6 +265,7 @@ addBtn.addEventListener('click', e => {
     
 });
 
+
 (async () => {
 
 	try {
@@ -271,9 +273,15 @@ addBtn.addEventListener('click', e => {
 			withCredentials: true
 		});
 
+        if (data.length === 0) {
+            contactsContainer.classList.remove('grid');
+        } else {
+            contactsContainer.classList.add('grid')
+            noContacts.classList.add('hidden');
+        }
+    
 		
 		data.forEach(contact => {
-
     
 			const listItem = document.createElement('div');
 	listItem.id = contact.id;
@@ -285,7 +293,7 @@ addBtn.addEventListener('click', e => {
         <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
     </svg>
         
-    <div id="contact-info" class="flex flex-col gap-1 ml-4 w-2/4">
+    <div id="contact-info" class="flex flex-col gap-2 ml-4 w-2/4">
         <input type="text" id="name-added" class="font-bold bg-transparent w-full" value="${contact.contactname}" readonly>
         <input type="text" id="phone-added" class="bg-transparent w-full" value="${contact.phone}" readonly>
     </div>
