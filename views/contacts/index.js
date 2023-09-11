@@ -117,19 +117,19 @@ contactsContainer.addEventListener('click', async e => {
         const editBtn = optionMobileMenu.children[0];
         const deleteBtn = optionMobileMenu.children[1];
 
+
         if (optionMobileMenu.classList.contains('hidden')) {
             optionMobileMenu.classList.remove('hidden');
             optionMobileMenu.classList.add('active')
-            console.log('activo');
 
             // Edit contact
 
             editBtn.addEventListener('click', async e  => {
                 const editInputName = editBtn.parentElement.parentElement.children[0].children[1].children[0];
-
                 const editInputPhone = editBtn.parentElement.parentElement.children[0].children[1].children[1];
 
                 if (editBtn.classList.contains('editando')) {
+
 
                    const listItem = editBtn.parentElement.parentElement;
 
@@ -147,10 +147,10 @@ contactsContainer.addEventListener('click', async e => {
                     editInputName.classList.remove('outline-green-700', 'outline-2', 'outline');
 
                     await axios.patch(`/api/contacts/${listItem.id}`, {contactname: editInputName.value, phone: editInputPhone.value});
-
+                    optionMobileMenu.classList.add('hidden');
+                    optionMobileMenu.classList.remove('active')
                 } else {
 
-                    
 
                     // **Validacion**
         let nameAddedValidation = true;
@@ -181,7 +181,6 @@ contactsContainer.addEventListener('click', async e => {
         editInputPhone.addEventListener('input', e => {
             phoneAddedValidation = PHONE_REGEX.test(editInputPhone.value);
             validateAddedInput(editInputPhone, phoneAddedValidation);
-            console.log(phoneAddedValidation);
         });
         
                     // Nueva clase editando para indicar el estado del boton
@@ -285,8 +284,7 @@ addBtn.addEventListener('click', e => {
 
 async function contactsExist () {
     try {
-        const { data } = await axios.get('/api/contacts')
-        console.log(data.length);
+        const { data } = await axios.get('/api/contacts');
 
         if (data.length === 0) {
             contactsContainer.classList.remove('grid');
